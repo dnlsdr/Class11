@@ -10,11 +10,35 @@ Pythonban elég volt leírni, hogy `kor = 25`. A Python kitalálta, hogy ez egy 
 **Példa:**
 
 ```java
+// --- EGÉSZ SZÁMOK (4 féle, mérettől függően) ---
+
+// Python: honap = 12
+byte honap = 12;           // Nagyon pici számokhoz (-128-tól 127-ig)
+
+// Python: ev = 2026
+short ev = 2026;           // Kisebb számokhoz (kb. -32 ezer és +32 ezer között)
+
 // Python: kor = 25
-int kor = 25; 
+int kor = 25;              // Általános egész szám (szinte mindig ezt használjuk)
+
+// Python: vagyon = 5000000000
+long vagyon = 5000000000L; // Hatalmas számokhoz (kötelező az 'L' a végén, hogy a Java tudja a méretét!)
+
+// --- LEBEGŐPONTOS (TÖRT) SZÁMOK (2 féle) ---
+
+// Python: suly = 65.5
+float suly = 65.5f;        // Kisebb pontosságú tört (kötelező az 'f' a végén!)
+
+// Python: pi = 3.14159265
+double pi = 3.14159265;    // Nagyobb pontosságú, általános tört szám
+
+// --- LOGIKAI ÉS KARAKTER ---
 
 // Python: aktiv = True
-boolean aktiv = true; 
+boolean aktiv = true;      // Csak true vagy false lehet (kisbetűvel)
+
+// Python: betu = 'A' (Pythonban mindegy az idézőjel, Javában nem!)
+char betu = 'A';           // Szigorúan EGYETLEN karakter, szimpla idézőjelben
 
 ```
 
@@ -29,12 +53,17 @@ A matematikai műveletek nagyon hasonlítanak a Pythonra, de van pár fontos kü
 
 ### 3. Szövegek tárolása (Strings)
 
-Javában a szöveg nem primitív típus, hanem egy objektum (ezért kezdődik nagybetűvel). Szigorúan **dupla idézőjelet** kell használni hozzá (a szimpla a `char` kiváltsága).
+Javában a szöveg nem primitív típus, hanem egy osztály (ezért kezdődik nagybetűvel). Szigorúan **dupla idézőjelet** kell használni hozzá (a szimpla a `char` kiváltsága).
 
 **Példa:**
 
 ```java
 // Python: nev = "Anna" vagy nev = 'Anna'
+
+// Mivel a String a Javában egy osztály, technikailag pontosan ugyanúgy kell(ene) neki memóriát foglalni a new kulcsszóval, mint bármilyen más objektumnak (pl. a Scanner-nek)
+String nev2 = new String("Anna");
+//  new String("Anna") a logikailag legtisztább forma, a szövegeket olyan rengetegszer használjuk programozás közben, hogy a Java készítői csináltak egy kényelmi kiskaput.
+// Megengedik, hogy lerövidítsük String nev = "Anna"; formára de ez továbbra is egy teljes értékű objektum
 String nev = "Anna";
 
 ```
