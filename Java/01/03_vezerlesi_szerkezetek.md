@@ -1,5 +1,5 @@
 Míg a Python az olvashatóságot kötelező behúzásokkal (szóközökkel) kényszeríti ki, a Javát ez egyáltalán nem érdekli: 
-*a logikai blokkokat szigorúan **kapcsos zárójelek `{ }**`, a feltételeket pedig **kerek zárójelek `( )**` határozzák meg.
+* a logikai blokkokat szigorúan **kapcsos zárójelek** `{ }`, a feltételeket pedig **kerek zárójelek** `( )` határozzák meg.
 
 ### 1. Feltételes utasítások (If-Else és Switch)
 
