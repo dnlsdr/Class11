@@ -2,11 +2,12 @@
 Írjunk egy (külön) Java osztályt, ami képes statisztikai műveleteket végezni egy tömbön, amelynek értékei számok.
 
 * A műveletek:
-  * Szélsőérték keresése, átlag, medián, módusz.
+  * Szélsőérték keresése, átlag.
 * Az egyes számításokat külön függvények végezzék.
 * A tömböt a konstruktorban adjuk át az osztálynak
 * A tömb értékeit a felhasználótól olvassuk be.
-
+* Extra feladat: további műveletek:
+  - medián, módusz
 Ehhez kis segítség:
 
 
