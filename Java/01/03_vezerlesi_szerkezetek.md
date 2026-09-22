@@ -144,3 +144,26 @@ for (int i = 1; i <= 10; i++) {
     System.out.println("Páratlan szám: " + i);
 }
 ```
+### 5. Logikai operátorok feltételekben
+Használd az AND (&&) operátort, amikor mindkét feltételnek igaznak kell lennie. Használd az OR (||) operátort, amikor legalább az egyik feltételnek igaznak kell lennie. A NOT (!) operátorral megfordíthatod egy feltétel értékét.
+```java
+// forrás: w3schools.com
+boolean isLoggedIn = true;
+boolean isAdmin = false;
+int securityLevel = 3; // 1 = highest
+
+if (isLoggedIn && (isAdmin || securityLevel <= 2)) {
+  System.out.println("Access granted");
+} else {
+  System.out.println("Access denied");
+}
+
+// Try changing securityLevel to test different outcomes:
+//
+// securityLevel 1 = Access granted
+// securityLevel 2 = Access granted
+// securityLevel 3 = Access denied
+// securityLevel 4 = Access denied
+//
+// If isAdmin = true, access is granted.
+```
