@@ -8,8 +8,6 @@
 * A tömb értékeit a felhasználótól olvassuk be.
 
 Ehhez kis segítség:
-
-
 ```java
 import java.util.Scanner;     
 // A felhasználói interakcióhoz
@@ -17,7 +15,8 @@ import java.util.Scanner;
 Scanner input = new Scanner( System.in );         // Bemeneti csatorna objektum
 int szam = input.nextInt();                       // Felhasználói input beolvasása
 ```
-* Extra feladat: további műveletek:
+
+### Extra feladat: további műveletek:
   - medián, módusz
 
 Ehhez kis segítség:
