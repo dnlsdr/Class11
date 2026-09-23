@@ -104,7 +104,7 @@ public class ObjektumAllapotPelda {
 
 **3. Objektum referenciájának felülírása**
 
-Mi történik, ha a függvényen belül a lemásolt kulcsot (`tombCim`) egy teljesen új öltözőszekrényhez rendeljük a `new` kulcsszóval? Az eredeti kulcs (a `main`-ben) továbbra is a régi szekrényt fogja nyitni. Ha a Java "pass by reference" lenne, az eredeti változó is az új szekrényre mutatna.
+Mi történik, ha a függvényen belül a lemásolt referenciát (`tombCim`) egy teljesen új objektumhoz rendeljük a `new` kulcsszóval? Az eredeti referencia (a `main`-ben) továbbra is az eredeti objektumra mutat. 
 
 ```java
 public class ReferenciaFelulirasPelda {
