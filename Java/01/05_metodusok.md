@@ -1,4 +1,3 @@
-### draft
 A Javában a kódunkat meghatározott feladatokat elvégző, újrahasznosítható blokkokba szervezzük. Fontos terminológiai különbség más nyelvekhez képest, hogy Javában hivatalosan csak **metódusok (methods)** léteznek, önálló függvények (functions) nincsenek, mivel minden utasításblokk kötelezően egy osztályhoz (class) tartozik.
 
 ### A metódusok felépítése és a visszatérési érték
@@ -50,4 +49,4 @@ Mivel a metódusok osztályokon belül élnek, a Java szigorú szabályokat tám
 
 * **Fájl és osztály névkonvenció:** Egy `.java` fájl legfeljebb egyetlen `public` (nyilvános) osztályt tartalmazhat (top-level class). Ennek a nyilvános osztálynak a neve hajszálpontosan meg kell egyezzen a fájl nevével (pl. a `Calculator` osztály a `Calculator.java` fájlban kell legyen).
 * **Csomagok (Packages):** Ha több osztály ugyanabba a csomagba tartozik, hozzáférhetnek egymás csomagszintű (package-private) adataihoz. Azonban ez nem jelenti azt, hogy összevonhatod őket egyetlen fájlba; ha mindkettő `public`, külön fájlokban kell élniük.
-* **A `main` metódus:** Egy Java program standard belépési pontjának (ahol a futás elindul) kötelezően a `public static void main(String[] args)` szignatúrával kell rendelkeznie. Ha csupán annyit írsz, hogy `static void main()`, a fordító nem jelez szintaktikai hibát, de a Java futtatókörnyezet nem fogja felismerni azt indítópontként.
+* **A `main` metódus:** Egy Java program standard belépési pontja (ahol a futás elindul) kötelezően a `public static void main(String[] args)` szignatúrával rendelkezett. Az újabb verziókban elég a `void main()` is, a JVM elindítja azt is ha nem talál klasszikus belépési pontot. 
