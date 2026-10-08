@@ -88,9 +88,9 @@ public class EnumsWithFieldsExample {
 ```
 # 4. Enumhasználat előnyei
 
-A "varázsszámok" (magic numbers) és "varázsszövegek" (magic strings) olyan a kódba fixen beégetett értékek, amelyeknek a jelentése kontextus nélkül nem egyértelmű, és könnyű velük hibázni, mert a Java fordítója (compiler) nem tudja ellenőrizni a logikai helyességüket.
+A ,,varázsszámok'' (magic numbers) és ,,varázsszövegek'' (magic strings) olyan a kódba fixen beégetett értékek, amelyeknek a jelentése kontextus nélkül nem egyértelmű, és könnyű velük hibázni, mert a Java fordítója nem tudja ellenőrizni a logikai helyességüket.
 
-### 1. A probléma: "Varázsszámok" és "Varázsszövegek" használata
+### Magic numbers és strings használatára példa
 
 Tegyük fel, hogy egy rendelésnek három állapota lehet: Fogadva, Sütés alatt, Kiszállítás alatt.
 
@@ -122,7 +122,7 @@ public void setStatus(String newStatus) {
 **Mi ezzel a baj?**
 Bár már olvashatóbb (`order.setStatus("SUTES_ALATT")`), de sérülékeny. Ha elgépelsz egy betűt, például `order.setStatus("SUTES_ALAT")`, a fordító ezt is simán elfogadja (hiszen ez egy érvényes `String`), de a programod, ami a pontos szöveget várja, nem fogja tudni helyesen kezelni.
 
-### 2. A megoldás: Típusbiztosság (Type Safety) Enumokkal
+### Típusbiztosság (Type Safety) Enumokkal
 
 Ha bevezetünk egy Enumot, a fenti problémák megszűnnek:
 
