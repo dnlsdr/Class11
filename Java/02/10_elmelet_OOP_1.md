@@ -16,7 +16,7 @@
 **3. Változók és Metódusok**
 
 * Egy osztálynak lehetnek példányváltozói, osztályváltozói (statikus), valamint példány- és osztálymetódusai.
-* A változók deklarációja a típus és a név megadásával történik (a `var` kulcsszó itt nem működik), és inicializálhatók a konstruktoron kívül is.
+* A változók deklarációja a típus és a név megadásával történik, és inicializálhatók a konstruktoron kívül is.
 * A műveleteket az objektumokhoz kapcsolt alprogramokkal, metódusokkal valósítjuk meg.
 * *Példa változókra:*
 `static private int fuelPrice = 480;` (osztályváltozó) és `private double fuel = 0;` (példányváltozó).
@@ -53,7 +53,12 @@ public Car(String carType, double consumption, int capacity) {
 * A belső változókat a `private` módosítószóval rejtjük el, hogy védjük az integritást, vagy függetlenítsük a felhasználókat az osztály belső struktúrájától.
 * Az elrejtett változók elérését a getter és setter függvények biztosítják; ha egy privát változóhoz nem írunk settert, akkor az írásvédett lesz.
 * *Példa getter és setter használatára (beépített ellenőrzéssel):*
+
 ```java
+// az osztályban deklarálva van egy mező, ami privát
+private double consumption;
+//...//
+// erre a consumption nevű változóra a getter-setter páros
 public double getConsumption() {
   return consumption;
 }
