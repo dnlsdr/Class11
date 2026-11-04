@@ -45,7 +45,34 @@ public Car(String carType, double consumption, int capacity) {
 }
 
 ```
+* *Példa konstruktor delegációra:*
 
+```java
+public class Car {
+    String carType;
+    double consumption;
+    int capacity;
+
+    // 1. Fő konstruktor (mindhárom mezőt beállítja)
+    public Car(String carType, double consumption, int capacity) {
+        this.carType = carType;
+        this.consumption = consumption;
+        this.capacity = capacity;
+    }
+
+    // 2. Delegáló konstruktor (csak a kocsitípust várja, a többihez alapértéket rendel)
+    public Car(String carType) {
+        // Itt történik a delegálás: meghívja a fenti, 3 paraméteres konstruktort
+        this(carType, 6.5, 5); 
+    }
+}
+
+```
+* Példakód magyarázata
+
+  - Ha egy új autót hozunk létre csak a típusa megadásával (pl. `Car myCar = new Car("Opel Astra");`), a program a **2. konstruktort** futtatja.
+  - Ez a konstruktor a `this(carType, 6.5, 5)` hívással továbbadja (delegálja) a munkát az **1. konstruktornak**, belehelyezve az alapértelmezett `6.5`-ös fogyasztást és `5`-ös férőhelyet.
+  - **Fontos szabály:** Ha a `this(...)` delegálást használjuk, annak **mindig a konstruktor első sorában** kell szerepelnie!
 
 
 **5. Adatelrejtés: Getter és Setter műveletek**
