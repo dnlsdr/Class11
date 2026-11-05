@@ -203,7 +203,7 @@ A `Bus` a `Taxi` osztályból származik le, de végleges (`final`) osztálykén
 package vehicles;
 
 public final class Bus extends Taxi { // final osztály: nem lehet belőle tovább örökölni
-    private static final int ticketPrice = 350; // Konstans osztályváltozó (jegyár)
+    private static final int ticketPrice = 500; // Konstans osztályváltozó (jegyár), most eltekintünk a reptéri busztól
 
     public Bus(String busType, double consumption, int capacity, double kmCost) {
         super(busType, consumption, capacity, kmCost);
