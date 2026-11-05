@@ -259,9 +259,9 @@ Amikor észrevesszük, hogy több osztályunk (pl. `Car` és egy új `Bicycle`) 
 * Egy **hiányosan definiált osztály**, amely a tervezést segíti.
 * Tartalmazhat **absztrakt metódusokat** (olyan metódusokat, amelyeknek csak a fejléce van megadva, törzse nincs, mert még nem tudjuk, hogyan fog működni – pl. máshogy halad egy autó, mint egy bicikli).
 * **Szabályok:**
-* Ha egy osztályban van legalább egy `abstract` metódus, magát az osztályt is **kötelező** `abstract`-nak jelölni.
-* Absztrakt osztályt **nem lehet példányosítani** (`new Vehicle()` fordítási hibát ad).
-* A nem-absztrakt leszármazott osztály **köteles megvalósítani (implementálni)** az ős összes absztrakt metódusát!
+    - Ha egy osztályban van legalább egy `abstract` metódus, magát az osztályt is **kötelező** `abstract`-nak jelölni.
+    - Absztrakt osztályt **nem lehet példányosítani** (`new Vehicle()` fordítási hibát ad).
+    - A nem-absztrakt leszármazott osztály **köteles megvalósítani (implementálni)** az ős összes absztrakt metódusát!
 
 
 * *IDEA tipp:* Meglévő osztályból a *Refactor -> Extract/Introduce -> Superclass* menüponttal emelhetünk ki könnyen ősosztályt, a *Refactor -> Rename* segítségével pedig biztonságosan átnevezhetjük a változókat (pl. `carType` helyett `type`).
@@ -273,6 +273,7 @@ Amikor észrevesszük, hogy több osztályunk (pl. `Car` és egy új `Bicycle`) 
 ```java
 public abstract class Vehicle {
     protected String type;
+    // odometer - kilóméteróra
     protected double odometer = 0;
     protected int capacity;
 
