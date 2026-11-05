@@ -209,10 +209,10 @@ public final class Bus extends Taxi { // final osztály: nem lehet belőle tová
         super(busType, consumption, capacity, kmCost);
     }
 
-    // 1. Felüldefiniálás: alapértelmezett fuvar 1 utassal
+    // 1. Felüldefiniálás: alapértelmezett fuvar 0 utassal
     @Override
     public double transfer(double km) {
-        return transfer(km, 1); // Meghívja a túlterhelt, 2 paraméteres változatot
+        return transfer(km, 0); // Meghívja a túlterhelt, 2 paraméteres változatot
     }
 
     // 2. Túlterhelés (Overload): ugyanaz a név, de 2 paramétere van!
