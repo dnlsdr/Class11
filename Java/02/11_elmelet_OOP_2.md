@@ -105,9 +105,13 @@ Egy leszármazott osztályban többféleképpen alakíthatjuk a szülőtől kapo
 
 <br>• A szülő eredeti metódusa a `super.metodusNev()` hívással továbbra is elérhető.<br>
 
-<br>• *Szabály:* Konstruktorból csak `final` (nem felüldefiniálható) metódust szabad hívni! |
-| **Túlterhelés (Overload)** | Ugyanazzal a névvel, de **eltérő paraméterlistával** írunk új metódust. | Csak a visszatérési típus megváltoztatásával nem lehet túlterhelni! A paraméterezés dönti el, melyik fut le. |
-| **Elfedés (Hiding)** | A szülővel azonos nevű **adattag** vagy azonos szignatúrájú **statikus (osztály) metódus** deklarálása. | Ritkán szükséges, elrejti a szülő azonos nevű elemét. |
+<br>• *Szabály:* Konstruktorból csak `final` (nem felüldefiniálható) metódust szabad hívni!
+
+| Fogalom | Leírás / Lényeg | További jellemzők |
+| --- | --- | --- |
+| **Túlterhelés (Overload)** | Ugyanazzal a névvel, de **eltérő paraméterlistával** írunk új metódust *ugyanazon* az osztályon belül. | Csak a visszatérési típus megváltoztatásával nem lehet túlterhelni! A paraméterezés dönti el, hogy melyik fut le fordítási időben. |
+| **Felülírás / Felüldefiniálás (Override)** | A szülőosztályban lévő példánymetódus újradefiniálása a leszármazott osztályban (**azonos szignatúrával**). | A visszatérési típusnak meg kell egyeznie, vagy **kovariáns altípusnak** kell lennie. Futásidejű polimorfizmust valósít meg. |
+| **Elfedés (Hiding)** | A szülővel azonos nevű **adattag** (mező) vagy azonos szignatúrájú **statikus (osztály) metódus** deklarálása a gyerekben. | Ritkán javasolt, mert zavaró lehet: a hivatkozott referenciatípustól függ, hogy a szülő vagy a gyerek elemét érjük el. |
 
 ### Példa: Felüldefiniálás és Bővítés a `Taxi` osztályban
 
