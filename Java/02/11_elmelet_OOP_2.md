@@ -10,7 +10,7 @@ Amikor egy meglévő osztály funkcióit szeretnénk bővíteni, vagy bizonyos m
 
 ### Az `extends` kulcsszó és az „is-a” reláció
 
-Javában az öröklődést az `extends` (kiterjeszteni) kulcsszóval adjuk meg:
+Javában az öröklődést az `extends` kulcsszóval adjuk meg:
 
 ```java
 class Child extends Parent { 
@@ -20,7 +20,7 @@ class Child extends Parent {
 ```
 
 * **Altípus képzés (is-a reláció):** A leszármazott osztály a szülőosztály egy speciális fajtája (altípusa) lesz. Például: a *Taxi* egyben *Autó* is (`Taxi extends Car`), a *Négyzet* pedig egy speciális *Téglalap* (`Square extends Rectangle`).
-* **Fontos korlát:** A tartalmazási (*has-a*, pl. az autónak *van* motorja) kapcsolatot **nem** lehet öröklődéssel kifejezni.
+* **Fontos korlát:** A tartalmazási (*has-a*, pl. az autónak *van* motorja) kapcsolatot **nem** lehet öröklődéssel kifejezni. Ha egy objektum egy másik része (motor a kocsiban, szoba a házban, név az emberben), akkor azt mezőként (attribútumként) tároljuk benne (has-a), és nem örökítjük tőle (is-a).
 * **Mit örököl a leszármazott?** A szülőosztály **minden** tulajdonságát (adattagját) és metódusát örökli, a láthatóságtól függetlenül! A szülő `private` adattagjai is ott lesznek a leszármazott objektumban a memóriában, csupán a leszármazott kódjából **nem férhetünk hozzájuk közvetlenül** (ehhez `protected` vagy `public` láthatóság kell). A konstruktorok **nem** öröklődnek.
 
 ### Osztályhierarchia és az `Object` ősosztály
