@@ -122,14 +122,72 @@ public interface FoodWithCalories extends Food {
 ```
 
 **2. Alapértelmezett (`default`) metódus használatával (ha a bővítés mindenkire vonatkozik):**
-A `default` kulcsszóval magában az interfészben is adhatunk implementációt, így a régi osztályok lefordulnak, mert megkapják ezt az alapértelmezett működést, bár továbbra is felüldefiniálhatják azt.
+A `default` kulcsszóval magában az interfészben is adhatunk implementációt, így a régi osztályok lefordulnak, mert megkapják ezt az alapértelmezett működést, bár továbbra is felüldefiniálhatják azt. Ez a megoldás elsősorban a visszafelé kompatibilitást szolgálja: az interfészt megvalósító már meglévő osztályok anélkül öröklik meg az új viselkedést, hogy a kódjukat módosítani kellene. Természetesen, ha egy osztálynak egyedi működésre van szüksége, a szokásos módon felülírhatja (override) az alapértelmezett metódust.
 
 ```java
 public interface Food {
     String whatToEat();
     
+    // Alapértelmezett implementáció, ami utólag került az interfészbe
     default Integer howManyCalories() {
-        return null;
+        return 0;
+    }
+}
+
+// A régi osztály kódja változatlan marad, automatikusan örökli a 0 kalóriás működést
+public class Spinach implements Food {
+    @Override 
+    public String whatToEat() {
+        return "Spinach";
+    }
+    // A howManyCalories() meghívható egy Spinach objektumon, és 0-t ad vissza
+}
+
+// Egy újabb osztály felülírhatja az alapértelmezett viselkedést a saját logikájával
+public class Chocolate implements Food {
+    @Override 
+    public String whatToEat() {
+        return "Chocolate";
+    }
+    
+    @Override 
+    public Integer howManyCalories() {
+        return 535; // Felüldefiniált, egyedi implementáció
+    }
+}
+
+```
+
+**Többszörös öröklődésből fakadó ütközések feloldása**
+Mivel a Java interfészeknél megengedett a többszörös öröklődés, előfordulhat, hogy egy osztály két különböző interfészt is implementál, amelyek tartalmaznak egy azonos nevű és szignatúrájú `default` metódust. Ilyenkor fordítási hiba lép fel, mert a rendszer nem tudja eldönteni, melyik ős implementációját használja. Ezt az ütközést az osztályon belül nekünk kell manuálisan feloldani. Ezt megtehetjük úgy, hogy a metódust újra absztraktnak jelöljük, vagy kifejezetten meghívjuk valamelyik kiválasztott ősinterfész alapértelmezett implementációját az `OsztalyNev.super.metodusNev()` szintaxissal.
+
+```java
+public interface HealthyFood extends Food {
+    @Override
+    default Integer howManyCalories() {
+        return 100;
+    }
+}
+
+public interface TastyFood extends Food {
+    @Override
+    default Integer howManyCalories() {
+        return 800;
+    }
+}
+
+// Ütközés feloldása a megvalósító osztályban
+public class Apple implements HealthyFood, TastyFood {
+    @Override
+    public String whatToEat() {
+        return "Apple";
+    }
+
+    // Kötelező felülírni a két különböző default metódus ütközése miatt
+    @Override
+    public Integer howManyCalories() {
+        // Kifejezetten megmondjuk, hogy a HealthyFood implementációját kérjük
+        return HealthyFood.super.howManyCalories(); 
     }
 }
 
