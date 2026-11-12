@@ -1,5 +1,6 @@
 **1. Elméleti bevezető**
 
+
 A kivétel egy olyan objektum, amely a program futása során fellépő, az elvárttól eltérő (abnormális) állapotot ír le. A kivételkezelés célja, hogy a normál működés kódját elválassza a hibakezeléstől, ezáltal növelve a program olvashatóságát és megbízhatóságát. Ha hiba történik, a program "dob" egy kivételt, amelyet a megfelelő helyen "elkapunk", és megpróbáljuk a rendszert újra konzisztens állapotba hozni.
 
 **2.1. Ellenőrzött és nem ellenőrzött kivételek**
