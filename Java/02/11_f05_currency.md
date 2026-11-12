@@ -27,3 +27,21 @@ Készíts egy alap valutaváltó alkalmazást!
 
 
 * Írj egy egyszerű `Main` osztályt, ahol példányosítod a valutákat, és kipróbálod a váltásokat (csak kiíratással, egyelőre hibakezelés nélkül)!
+
+```
+--- VALUTAVÁLTÓ MEGNYITOTT ---
+Elérhető USD, EUR, GBP, JPY
+
+--- USD Tranzakciók ---
+Ügyfél 50000.0 Ft-ért kapott: 168,35 USD-t.
+
+--- EUR Tranzakciók ---
+Ügyfél 50000.0 Ft-ért kapott: 138,89 USD-t.
+Ügyfél 100.0 USD eladásáért kapott: 29700 Ft-ot.
+
+--- GBP Tranzakciók ---
+Ügyfél 50.0 GBP eladásáért kapott: 20956 Ft-ot.
+
+--- JPY Tranzakciók ---
+Ügyfél 10000.0 Ft-ért kapott: 3570 JPY-t.
+```
