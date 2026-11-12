@@ -7,14 +7,14 @@ Az interfész (interface) egy felület, amely meghatározza és általánosítja
 A Java nyelvben az alábbi alapvető építőelemeket különböztetjük meg:
 
 * **Class (osztály):** A hagyományos építőelem, melynek közös őse a `java.lang.Object`.
-* **Interface (interfész):** Teljesen absztrakt osztályként viselkedik, amely "használati utasításként" vagy sablonként szolgál az osztályokhoz. Nem rendelkeznek közös őssel, és csak konstansokat, valamint tagfüggvények szignatúráit tartalmazzák.
+* **Interface (interfész):** Teljesen absztrakt osztályként viselkedik, amely ,,használati utasításként" vagy sablonként szolgál az osztályokhoz. Nem rendelkeznek közös őssel, és csak konstansokat, valamint tagfüggvények szignatúráit tartalmazzák.
 * **Enum (felsorolás):** Olyan speciális osztály, amelynek csak véges számú példánya létezik.
 
 
 
 ### 1.2. Többszörös öröklődés problémái
 
-A többszörös öröklődés (amit például a C++ támogat) elvezethet a "gyémánt problémához" (diamond problem): ha két ősosztály is tartalmaz egy azonos szignatúrájú függvényt, nem egyértelmű, hogy a közös leszármazott melyik megvalósítást örökölje. A Java megoldása erre az, hogy osztályok szintjén **nincs többszörös öröklődés**, viszont egy osztály több interfészt is megvalósíthat.
+A többszörös öröklődés (amit például a C++ támogat) elvezethet a ,,gyémánt problémához” (diamond problem): ha két ősosztály is tartalmaz egy azonos szignatúrájú függvényt, nem egyértelmű, hogy a közös leszármazott melyik megvalósítást örökölje. A Java megoldása erre az, hogy osztályok szintjén **nincs többszörös öröklődés**, viszont egy osztály több interfészt is megvalósíthat.
 
 ### 1.3. Java interfészek
 
@@ -22,7 +22,7 @@ A Java interfészek célja, hogy azt definiálják: „Mit tud az osztály?”, 
 
 ### Mindez a gyakorlatban
 
-Az interfészek arra jók, hogy garantáljanak egy adott funkcionalitást (az implementáló osztálynak kötelező megvalósítania a tagfüggvényeket), és több, egymáshoz hasonló osztály kezelőfelületét egységesítsék. Mivel az interfész statikus típusként is használható, az azt megvalósító különböző osztályok objektumai „egy kalap alá vehetők” és egységesen kezelhetők.
+Az interfészek arra jók, hogy garantáljanak egy adott funkcionalitást (az implementáló osztálynak kötelező megvalósítania a tagfüggvényeket), és több, egymáshoz hasonló osztály kezelőfelületét egységesítsék.
 
 ## 2.1. Hogyan működik?
 
@@ -103,7 +103,7 @@ A Java szabványos könyvtára számos beépített interfészt biztosít, amelye
 
 ## 5. Interfészek módosítása
 
-Ha egy már meglévő, sok osztály által használt interfészbe utólag egy új, megvalósítás nélküli tagfüggvényt teszünk, a kód "lerokkan", mert a meglevő implementáló osztályok nem fognak lefordulni. Erre a problémára a Java két megoldást kínál.
+Ha egy már meglévő, sok osztály által használt interfészbe utólag egy új, megvalósítás nélküli tagfüggvényt teszünk, a kód ,,lerokkan", mert a meglevő implementáló osztályok nem fognak lefordulni. Erre a problémára a Java két megoldást kínál.
 
 ### 5.1. Példák
 
@@ -122,6 +122,8 @@ public interface FoodWithCalories extends Food {
 ```
 
 **2. Alapértelmezett (`default`) metódus használatával (ha a bővítés mindenkire vonatkozik):**
+
+
 A `default` kulcsszóval magában az interfészben is adhatunk implementációt, így a régi osztályok lefordulnak, mert megkapják ezt az alapértelmezett működést, bár továbbra is felüldefiniálhatják azt. Ez a megoldás elsősorban a visszafelé kompatibilitást szolgálja: az interfészt megvalósító már meglévő osztályok anélkül öröklik meg az új viselkedést, hogy a kódjukat módosítani kellene. Természetesen, ha egy osztálynak egyedi működésre van szüksége, a szokásos módon felülírhatja (override) az alapértelmezett metódust.
 
 ```java
@@ -159,6 +161,7 @@ public class Chocolate implements Food {
 ```
 
 **Többszörös öröklődésből fakadó ütközések feloldása**
+
 Mivel a Java interfészeknél megengedett a többszörös öröklődés, előfordulhat, hogy egy osztály két különböző interfészt is implementál, amelyek tartalmaznak egy azonos nevű és szignatúrájú `default` metódust. Ilyenkor fordítási hiba lép fel, mert a rendszer nem tudja eldönteni, melyik ős implementációját használja. Ezt az ütközést az osztályon belül nekünk kell manuálisan feloldani. Ezt megtehetjük úgy, hogy a metódust újra absztraktnak jelöljük, vagy kifejezetten meghívjuk valamelyik kiválasztott ősinterfész alapértelmezett implementációját az `OsztalyNev.super.metodusNev()` szintaxissal.
 
 ```java
