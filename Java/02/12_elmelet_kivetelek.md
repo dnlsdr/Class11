@@ -9,6 +9,10 @@ A kivétel egy olyan objektum, amely a program futása során fellépő, az elv�
 * **Error**: Komoly, általában futást gátló és előre nem látható problémát jelez (pl. `OutOfMemoryError`), nem kötelező kezelni.
 * **RuntimeException** (Nem ellenőrzött / Unchecked): Futási időben bekövetkező, programozói hibából eredő kivétel (pl. `NullPointerException`), amit a fordító nem kényszerít ki, hogy lekezeljünk.
 * **Exception** (Ellenőrzött / Checked): A `RuntimeException`-ön kívül minden ide tartozó kivételt (pl. `IOException`) kötelező a kódban lekezelni vagy a továbbdobását specifikálni.
+* Mikor melyiket használjuk a gyakorlatban?
+    - **Ellenőrzött kivétel (Checked):** Olyan külső, rajtunk kívül álló eseményeknél használjuk, amelyekre a programnak fel kell készülnie (pl. nem létezik vagy nem olvasható a megadott input fájl, megszakadt a hálózati kapcsolat). Mivel ezeket nem tudjuk előre kivédeni a kód átírásával, a fordító kikényszeríti a kezelésüket.
+    - **Nem ellenőrzött kivétel (Unchecked):** Jellemzően programozói hibából, rosszul megírt kódból fakadnak (pl. nullával való osztás, tömb túlindexelése `ArrayIndexOutOfBoundsException`, vagy `null` referencián meghívott metódus `NullPointerException`). Ezeknél célszerű a hibát kódot kijavítani, nem `try-catch` blokkal elfedni.
+  
 
 
 
@@ -45,8 +49,22 @@ try {
 } catch (IOException e) {
     /* Hiba lekezelése */
 }
+```
+**Törekedjünk arra, hogy a kivételkezelés nem merüljön ki egy hibaüzenet konzolra írásában**. A valódi cél a program működőképességének megőrzése és a konzisztens állapot visszaállítása: ha például az alkalmazás nem éri el az adatbázist (`SQLException`), a `catch` ágban visszaadhatunk alapértelmezett adatokat, hogy a program összeomlás nélkül tovább tudjon futni:
+
+```java
+public List<String> getUserList() {
+    try {
+        return database.fetchUsers(); // Adatbázis lekérdezés
+    } catch (SQLException e) {
+        // Nem állítjuk le a programot, helyette dummy adatokkal térünk vissza
+        System.err.println("Adatbázis nem elérhető, tartalék adatok betöltése...");
+        return List.of("Teszt Elek", "Minta János");
+    }
+}
 
 ```
+
 
 **2.5. Mindenképpen lefutó programkód**
 
@@ -74,6 +92,26 @@ public static String readFromKeyboard() throws IOException {
 }
 
 ```
+Ha egy metódus a `throws` kulcsszóval továbbdobja a kivételt, akkor a felelősséget áthárítja, és **a hívási láncban feljebb (a hívó metódusban) kell azt `try-catch` blokkal lekezelni** (vagy onnan is továbbdobni):
+
+```java
+// 1. Alsóbb szintű metódus: nem kezeli le helyben, hanem továbbdobja (throws)
+public static String readConfigFile(String path) throws IOException {
+    BufferedReader br = new BufferedReader(new FileReader(path));
+    return br.readLine();
+}
+
+// 2. Hívó metódus (feljebb a hívási láncban): itt kapjuk el és kezeljük le
+public static void main(String[] args) {
+    try {
+        String config = readConfigFile("config.txt");
+        System.out.println("Beállítás: " + config);
+    } catch (IOException e) {
+        System.out.println("Nem sikerült beolvasni a fájlt, alapbeállítások használata.");
+    }
+}
+
+```
 
 **2.7. Multicatch ágak**
 
@@ -90,7 +128,10 @@ try {
 
 **2.8. Try with resources**
 
-Ez a szerkezet automatizálja az erőforrások lezárását, így kiváltja a `finally` blokk használatát a `close()` hívásokhoz. A hagyományos szintaxisban a `try` kulcsszó utáni zárójelben kell példányosítani az erőforrást, a Java 9 óta pedig egy már korábban létrehozott változó (ha később nem kap új értéket) is megadható:
+Ez a szerkezet automatizálja az erőforrások lezárását, így kiváltja a `finally` blokk használatát a `close()` hívásokhoz. 
+A `try(...)` zárójelébe kizárólag olyan objektumok helyezhetők, amelyek megvalósítják az **`AutoCloseable`** interfészt (vagy annak leszármazottját, a `Closeable`-t) – ilyen például a `BufferedReader`, a `Scanner` vagy az adatbázis-kapcsolatok. A `try` blokk végén a Java garantáltan és automatikusan meghívja ezek `close()` metódusát, kiváltva ezzel a `finally` blokk használatát.
+
+A hagyományos szintaxisban a `try` kulcsszó utáni zárójelben kell példányosítani az erőforrást, a Java 9 óta pedig egy már korábban létrehozott változó (ha később nem kap új értéket) is megadható:
 
 ```java
 // Hagyományos try-with-resources:
