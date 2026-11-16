@@ -75,6 +75,7 @@ Egyszerűsítsük le a biológiai nevezéktant, és hozd létre az alábbi péld
 1. **A rendszertani polimorfizmust:** tárold az összes létrehozott példányt egy közös `Gerinces[]` tömbben, és egy ciklussal írasd ki mindegyik adatait (`toString()`) és haladási módját (`halad()`).
 2. **A képesség alapú polimorfizmust:** hozz létre külön egy `Uszo[]` tömböt (amelybe bekerül a `Hal`, a `Keteltu` és a `Pingvin` is!) és egy `Repulo[]` tömböt, majd hívd meg a specifikus metódusaikat (`uszik()`, `repul()`)!
 
+*megjegyzés:* próbáld használni a new Gerinces(...) kulcsszót! Mi történik? Miért?
 ---
 
 #### Extra / Szorgalmi feladat: A kivételek az emlősök között
