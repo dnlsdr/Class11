@@ -83,3 +83,57 @@ Bővítsd ki az `Emlos` hierarchiát két további, végleges (`final`) osztáll
 
 * **`Denever`:** Az `Emlos` osztályból származik (vannak fogai, csigolyái), de a többi emlőssel ellentétben implementálja a `Repulo` interfészt (`repul()`), és a `halad()` metódusa ezt hívja meg! Vedd fel a `Main` osztály `Repulo[]` tömbjébe is a `Sas` mellé!
 * **`Balna`:** Szintén az `Emlos` osztályból származik, lábainak száma mindig `0` (akárcsak a halaknál!), és implementálja az `Uszo` interfészt (`uszik()`). Vedd fel a `Main` osztály `Uszo[]` tömbjébe is a `Hal`, a `Keteltu` és a `Pingvin` mellé!
+
+```
+=== 1. TELJES ÁLLATKERT (Rendszertani adatok) ===
+Aranyponty (Hal) | Csigolyák: 38 db, Lábak: 0 db | Uszonyok: 7 db
+Kecskebéka (Keteltu) | Csigolyák: 10 db, Lábak: 4 db | Ezt az állatot megeszik a franciák.
+Keresztes vipera (Hullo) | Csigolyák: 180 db, Lábak: 0 db | Ez a hüllő mérgező.
+Afrikai strucc (Madar) | Csigolyák: 56 db, Lábak: 2 db | Szárnyak: 2 db
+Szirti sas (Sas) | Csigolyák: 42 db, Lábak: 2 db | Szárnyak: 2 db
+Császárpingvin (Pingvin) | Csigolyák: 45 db, Lábak: 2 db | Szárnyak: 2 db
+Háromujjú lajhár (Emlos) | Csigolyák: 48 db, Lábak: 4 db | Fogak: 18 db
+Bodri (Kutya) | Csigolyák: 50 db, Lábak: 4 db | Fogak: 42 db | Ugat: igen, Harap-e: nem
+Cirmi (Macska) | Csigolyák: 53 db, Lábak: 4 db | Fogak: 30 db | Szőrszín: vörös cirmos
+Közönséges késeidenevér (Denever) | Csigolyák: 35 db, Lábak: 2 db | Fogak: 32 db
+Kardszárnyú delfin (Balna) | Csigolyák: 52 db, Lábak: 0 db | Fogak: 48 db
+
+=== 2. ÁLTALÁNOS HALADÁSI MÓDOK (Dinamikus kötés) ===
+Aranyponty gyorsan úszik az uszonyaival.
+Kecskebéka a vízben úszik.
+Kecskebéka a szárazföldön ugrál/megy.
+Keresztes vipera csendesen siklik.
+Afrikai strucc a két lábán lépeget.
+Szirti sas magasan szárnyal a levegőben.
+Császárpingvin a szárazföldön totyog, de a vízben:
+Császárpingvin torpedóként úszik a jéghideg vízben.
+Háromujjú lajhár mászik.
+Bodri farokcsóválva szalad.
+Cirmi sündörög.
+Közönséges késeidenevér ultrahanggal tájékozódva repül az éjszakában.
+Kardszárnyú delfin méltóságteljesen úszik az óceánban.
+
+=== 3. ÚSZÓ KÉPESSÉG (Hal, Kétéltű, Madár, Emlős) ===
+Aranyponty gyorsan úszik az uszonyaival.
+Kecskebéka a vízben úszik.
+Császárpingvin torpedóként úszik a jéghideg vízben.
+Kardszárnyú delfin méltóságteljesen úszik az óceánban.
+
+=== 4. REPÜLŐ KÉPESSÉG (Madár, Emlős) ===
+Szirti sas magasan szárnyal a levegőben.
+Közönséges késeidenevér ultrahanggal tájékozódva repül az éjszakában.
+
+=== 5. FUTÓ KÉPESSÉG (Kétéltű, Emlősök) ===
+Kecskebéka a szárazföldön ugrál/megy.
+Bodri farokcsóválva szalad.
+Cirmi sündörögve szalad.
+
+=== 6. EGYEDI LEKÉRDEZÉSEK ===
+Aranyponty uszonyainak száma: 7, lábai: 0
+Kecskebéka francia csemege? true
+Keresztes vipera mérgező? true
+Afrikai strucc szárnyainak száma: 2
+Háromujjú lajhár fogainak száma: 18
+Bodri ugat? true -> Tehát harap? false
+Cirmi szőrének színe: vörös cirmos
+```
