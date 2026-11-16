@@ -9,17 +9,17 @@
 Hozz létre két ellenőrzött kivételosztályt (`extends Exception`), amelyek nemcsak üzenetet, hanem **konkrét üzleti adatokat** is tárolnak, hogy a `catch` blokk tudjon belőlük számolni:
 
 * **`InsufficientInventoryException` (Készlethiány):**
-* Tárolja el a valuta kódját (`String currencyName`), a kért mennyiséget (`double requested`) és az aktuálisan elérhető készletet (`double available`).
-* Legyen egy `getAvailable()` és egy `getMissingAmount()` metódusa!
+  - Tárolja el a valuta kódját (`String currencyName`), a kért mennyiséget (`double requested`) és az aktuálisan elérhető készletet (`double available`).
+  - Legyen egy `getAvailable()` és egy `getMissingAmount()` metódusa!
 
 
 * **`LimitExceededException` (Limit túllépés):**
-* Tárolja el a megengedett maximális devizamennyiséget (`double maxLimit`) és a kért mennyiséget (`double requested`).
-* Legyen egy `getMaxLimit()` metódusa!
+  - Tárolja el a megengedett maximális devizamennyiséget (`double maxLimit`) és a kért mennyiséget (`double requested`).
+  - Legyen egy `getMaxLimit()` metódusa!
 
 
 * **`CurrencyDisabledException` (Tiltott valuta):**
-* Tárolja el a letiltott valuta nevét (`String currencyName`), és legyen hozzá getter!
+  - Tárolja el a letiltott valuta nevét (`String currencyName`), és legyen hozzá getter!
 
 
 
@@ -28,33 +28,41 @@ Hozz létre két ellenőrzött kivételosztályt (`extends Exception`), amelyek 
 * **Interfészek frissítése:** Mind a `BuyableCurrency.buyCurrency(...)`, mind a `SellableCurrency.sellCurrency(...)` deklarációja jelezze a `throws Exception` lehetőséget!
 * **Közös forintkassza (`static`):** A `Currency` osztály kapjon egy osztályszintű (`private static double hufBalance`) mezőt (pl. induljon `1_000_000.0` Ft-tal), valamint hozzá tartozó statikus gettert (`getHufBalance()`). Ha az ügyfél devizát vesz, a forintkassza nő; ha devizát ad el, a forintkassza csökken!
 * **Készletmozgató metódusok (`protected`):**
-* `decreaseInventory(double amount)`: Ha `amount > inventory`, dobjon `InsufficientInventoryException`-t a pontos adatokkal! Különben vonja le az `inventory`-ból, és növelje a közös `hufBalance`-ot a váltott forintösszeggel!
-* `increaseInventory(double amount)`: Növelje az `inventory`-t, és vonja le a kifizetett forintot a `hufBalance`-ból (ha a forintkassza nem elég a kifizetéshez, itt is dobhat `InsufficientInventoryException`-t `"HUF"` névvel)!
+  - `decreaseInventory(double amount)`: Ha `amount > inventory`, dobjon `InsufficientInventoryException`-t a pontos adatokkal! Különben vonja le az `inventory`-ból, és növelje a közös `hufBalance`-ot a váltott forintösszeggel!
+  - `increaseInventory(double amount)`: Növelje az `inventory`-t, és vonja le a kifizetett forintot a `hufBalance`-ból (ha a forintkassza nem elég a kifizetéshez, itt is dobhat `InsufficientInventoryException`-t `"HUF"` névvel)!
 
 
-* **Szöveges megjelenítés (`toString`):** A `Currency` osztály írja felül a `toString()` metódust, hogy kiírja a valuta nevét (osztálynevét), az árfolyamot és a fiókban maradt készletet!
+* **Szöveges megjelenítés (`toString`):** A `Currency` osztály írja felül a `toString()` metódust, hogy kiírja a valuta nevét (osztálynevét), az árfolyamot és a fiókban maradt készletet! *Osztálynév kiíratása:* this.getClass().getSimpleName()
 
 #### 3. Speciális üzleti szabályok a valutákban
 
 * **USD (Egyszeri vásárlási limit):**
-* Egyszerre legfeljebb **1000 USD**-t adunk el egy ügyfélnek.
-* Ha a beadott HUF több mint 1000 USD-nek felel meg, a `buyCurrency` dobjon `LimitExceededException`-t (`maxLimit = 1000.0`) még a készletlevonás előtt!
+  - Egyszerre legfeljebb **1000 USD**-t adunk el egy ügyfélnek.
+  - Ha a beadott HUF több mint 1000 USD-nek felel meg, a `buyCurrency` dobjon `LimitExceededException`-t (`maxLimit = 1000.0`) még a készletlevonás előtt!
 
 
-* **CHF (Kapcsolható kereskedés):**
-* Kapjon egy `private boolean enabled = true;` adattagot, egy `isEnabled()` gettert, és egy `trigger()` kapcsoló metódust (ami megfordítja az `enabled` értékét).
-* Ha `enabled == false`, mindkét tranzakciós irány (`buyCurrency` és `sellCurrency`) dobjon `CurrencyDisabledException`-t!
+* **CHF:**
+  - Kapjon egy `private boolean enabled = true;` adattagot, egy `isEnabled()` gettert, és egy `trigger()` kapcsoló metódust (ami megfordítja az `enabled` értékét).
+  - Ha `enabled == false`, mindkét tranzakciós irány (`buyCurrency` és `sellCurrency`) dobjon `CurrencyDisabledException`-t!
 
 
-* **JPY és EUR:** Használják az ősosztály biztonságos készletkezelő metódusait (a `GBP` maradjon csak eladható).
+* **JPY és EUR:** Használják az ősosztály biztonságos készletkezelő metódusait (a `GBP` maradjon csak eladható, a `JPY` pedig csak vehető).
 
-#### 4. Életszerű tesztelő `Main` osztály (Helyreállító hibakezeléssel)
+#### 4. Tesztelő `Main` osztály
 
 Írj egy `Main` osztályt, amely bemutatja a rendszer működését, és **nem csak kinyomtatja a hibákat**, hanem reagál is rájuk:
 
-1. **Kezdőállapot:** Példányosítsd az összes valutát (`USD`, `EUR`, `CHF`, `GBP`, `JPY`), írasd ki a fiók nyitókészleteit és a forintkasszát!
-2. **Normál tranzakciók:** Végezz el egy sikeres EUR vételt és eladást, egy GBP eladást, valamint egy JPY vételt!
-3. **USD limit kezelése (`LimitExceededException`):**
+1. **Kezdőállapot:** Példányosítsd az összes valutát (`USD`, `EUR`, `CHF`, `GBP`, `JPY`), írasd ki a fiók nyitókészleteit és a forintkasszát! A kiíratáshoz használj Currency típusú tömböt, ebben tárold a különböző valutapéldányokat, majd for ciklussal írasd ki.
+2. Példanyosításhoz: 
+```
+        USD usd = new USD(1500.0);
+        EUR eur = new EUR(500.0);
+        CHF chf = new CHF(800.0);
+        GBP gbp = new GBP(400.0);
+        JPY jpy = new JPY(200_000.0);
+```
+3. **Normál tranzakciók:** Végezz el egy sikeres EUR vételt és eladást, egy GBP eladást, valamint egy JPY vételt!
+4. **USD limit kezelése (`LimitExceededException`):**
 * Egy ügyfél `400 000 Ft`-ért szeretne USD-t venni (ami ~1346 USD, túllépi az 1000 USD limitet).
 * A `catch` blokkban kérd le a kivételből a maximumot (`e.getMaxLimit()`), vásárold meg helyette pontosan a maximumot (`maxLimit * usd.getRate()`), és írasd ki, mennyi forint visszajárót kap az ügyfél!
 
