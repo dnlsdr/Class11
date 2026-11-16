@@ -11,9 +11,9 @@ Készíts egy alap valutaváltó alkalmazást!
 
 
 * Hozz létre két interfészt a tranzakciókhoz:
-* `BuyableCurrency`: egy függvénye legyen, a `buyCurrency(double hufAmount)`. Ezzel tudunk HUF-ot a külföldi pénznembe váltani.
-* `SellableCurrency`: egy függvénye legyen, a `sellCurrency(double foreignAmount)`. Ezzel tudjuk a külföldi pénznemet HUF-ba váltani.
-* Mindkét függvény `double` típusú visszatérési értékkel rendelkezzen (a kapott összeg).
+  - `BuyableCurrency`: egy függvénye legyen, a `buyCurrency(double hufAmount)`. Ezzel tudunk HUF-ot a külföldi pénznembe váltani.
+  - `SellableCurrency`: egy függvénye legyen, a `sellCurrency(double foreignAmount)`. Ezzel tudjuk a külföldi pénznemet HUF-ba váltani.
+  - Mindkét függvény `double` típusú visszatérési értékkel rendelkezzen (a kapott összeg).
 
 
 * Minden külföldi pénznemet külön osztályként hozz létre (USD, GBP, EUR, CHF, JPY), amik a `Currency` osztályból örökölnek!
