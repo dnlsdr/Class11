@@ -10,7 +10,7 @@ Folytasd az előzőleg elkészített valutaváltó alkalmazást!
 
 
 * **Készletkezelés bevezetése:**
-  - A tranzakciók (`buyCurrency` és `sellCurrency`) metódusai ne csak számoljanak, hanem vonják is le / adják is hozzá a kiszámolt összeget a `Currency` ősosztályban tárolt készletből! Ha a készlet alá menne a tranzakció (nincs elég valuta a váltóban), dobjon egy `IllegalArgumentException`-t!
+  - A tranzakciók (`buyCurrency` és `sellCurrency`) metódusai ne csak számoljanak, hanem vonják is le / adják is hozzá a kiszámolt összeget a `Currency` ősosztályban tárolt készletből! Ha a készlet alá menne a tranzakció (nincs elég valuta a váltóban), dobjon egy `IllegalArgumentException`-t! -> ezt a Main-ben kell lekezelni a készlethiány tesztelésekor.
 
 
 * **Egyedi szabályok az osztályokban:**
