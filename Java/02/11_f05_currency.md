@@ -19,9 +19,9 @@ Készíts egy alap valutaváltó alkalmazást!
 * Minden külföldi pénznemet külön osztályként hozz létre (USD, GBP, EUR, CHF, JPY), amik a `Currency` osztályból örökölnek!
 * **Árfolyamok:** 1 USD = 297,00 HUF; 1 EUR = 360,01 HUF; 1 CHF = 326,67 HUF; 1 GBP = 419,12 HUF; **1000 JPY = 2800,75 HUF** *(Figyelj a japán jen váltószámára!)*.
 * **Interfészek implementálása:**
-* Az USD, EUR és CHF osztályok mindkét interfészt implementálják.
-* Angol fontot (GBP) a cég nem akar eladni (az ügyfél nem tud venni), így az **csak** a `SellableCurrency` interfészt implementálja.
-* Japán jent (JPY) a cég nem akar venni (az ügyfél nem tudja HUF-ra váltani), így az **csak** a `BuyableCurrency` interfészt implementálja.
+  - Az USD, EUR és CHF osztályok mindkét interfészt implementálják.
+  - Angol fontot (GBP) a cég nem akar eladni (az ügyfél nem tud venni), így az **csak** a `SellableCurrency` interfészt implementálja.
+  - Japán jent (JPY) a cég nem akar venni (az ügyfél nem tudja HUF-ra váltani), így az **csak** a `BuyableCurrency` interfészt implementálja.
 
 
 
