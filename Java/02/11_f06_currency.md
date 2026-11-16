@@ -6,11 +6,11 @@
 Folytasd az előzőleg elkészített valutaváltó alkalmazást!
 
 * **Saját kivételek létrehozása:**
-* Hozz létre egyedi kivételosztályokat (pl. `LimitExceededException` és `CurrencyDisabledException`), amelyek az `Exception` (vagy `RuntimeException`) osztályból örökölnek!
+  - Hozz létre egyedi kivételosztályokat (pl. `LimitExceededException` és `CurrencyDisabledException`), amelyek az `Exception` (vagy `RuntimeException`) osztályból örökölnek!
 
 
 * **Készletkezelés bevezetése:**
-* A tranzakciók (`buyCurrency` és `sellCurrency`) metódusai ne csak számoljanak, hanem vonják is le / adják is hozzá a kiszámolt összeget a `Currency` ősosztályban tárolt készletből! Ha a készlet alá menne a tranzakció (nincs elég valuta a váltóban), dobjon egy `IllegalArgumentException`-t!
+  - A tranzakciók (`buyCurrency` és `sellCurrency`) metódusai ne csak számoljanak, hanem vonják is le / adják is hozzá a kiszámolt összeget a `Currency` ősosztályban tárolt készletből! Ha a készlet alá menne a tranzakció (nincs elég valuta a váltóban), dobjon egy `IllegalArgumentException`-t!
 
 
 * **Egyedi szabályok az osztályokban:**
