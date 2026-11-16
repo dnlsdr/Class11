@@ -36,8 +36,8 @@ Elérhető USD, EUR, GBP, JPY
 Ügyfél 50000.0 Ft-ért kapott: 168,35 USD-t.
 
 --- EUR Tranzakciók ---
-Ügyfél 50000.0 Ft-ért kapott: 138,89 USD-t.
-Ügyfél 100.0 USD eladásáért kapott: 29700 Ft-ot.
+Ügyfél 50000.0 Ft-ért kapott: 138,89 EUR-t.
+Ügyfél 100.0 EUR eladásáért kapott: 29700 Ft-ot.
 
 --- GBP Tranzakciók ---
 Ügyfél 50.0 GBP eladásáért kapott: 20956 Ft-ot.
