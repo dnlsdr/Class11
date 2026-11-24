@@ -1,7 +1,15 @@
 ### Feladat: Geometriai Síkidomok Hierarchiája
 
 **Cél:** Az absztrakt osztályok, a többszintű öröklődési láncok, a láthatósági szintek (`protected`), a polimorfizmus, valamint a kód-újrafelhasználás (metódusok minimalizálása specializáció során) gyakorlása.
-
+#### 0. Felépítés:
+```
+Sikidom (absztrakt; protected kerulet, terulet; kerulet(), terulet(), toString(); protected abstract keruletSzamit(), teruletSzamit())
+├── Kor             (sugar; @Override keruletSzamit(), teruletSzamit(), toString())
+└── Trapez          (protected a, b, c, d; @Override keruletSzamit(), teruletSzamit(), toString())
+    └── Paralelogramma  (protected szog; super(a, b, a, b); @Override teruletSzamit(), toString())
+        └── Teglalap    (super(a, b, 90.0); @Override toString())
+            └── Negyzet (super(a, a); @Override toString())
+```
 #### 1. Az ősosztály: `Sikidom`
 
 - Készítsd el a `Sikidom` absztrakt osztályt!
