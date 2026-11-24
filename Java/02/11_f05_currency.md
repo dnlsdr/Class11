@@ -2,6 +2,18 @@
 
 **Cél:** Az osztályhierarchia, az absztrakt osztályok és az interfészek (szerződések) megértése és alkalmazása.
 
+**Az alkalmazás felépítése:**
+```
+Currency (absztrakt; final double rate, double inventory; getRate(), getInventory())
+├── USD  implements BuyableCurrency, SellableCurrency  (rate = 297.00; vétel + eladás)
+├── EUR  implements BuyableCurrency, SellableCurrency  (rate = 360.01; vétel + eladás)
+├── CHF  implements BuyableCurrency, SellableCurrency  (rate = 326.67; vétel + eladás)
+├── GBP  implements SellableCurrency                   (rate = 419.12; csak eladás)
+└── JPY  implements BuyableCurrency                    (rate = 2800.75 / 1000.0; csak vétel)
+
+BuyableCurrency   (double buyCurrency(double hufAmount))
+SellableCurrency  (double sellCurrency(double foreignAmount))
+```
 **Feladat:**
 Készíts egy alap valutaváltó alkalmazást!
 
