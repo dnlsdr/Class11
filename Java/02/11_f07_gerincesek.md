@@ -1,6 +1,25 @@
 ### Feladat: Gerincesek Rendszertana és Mozgásformái (Öröklődés + Interfészek)
 
 **Cél:** Az absztrakt osztályok, a többszintű öröklődés (`extends`), a láthatósági szintek (`protected`, `private`), a `final` módosítószó, valamint a képességeket leíró interfészek (`implements`) gyakorlása.
+#### 0. A megvalósítandó struktúra:
+```
+Gerinces (absztrakt; final nev, csigolyakSzama, labakSzama, halad())
+├── Hal       implements Uszo               (uszonyokSzama, lábak = 0)
+├── Keteltu   implements Uszo, Futo         (megeszikEFranciak)
+├── Hullo                                 (mergezo)
+├── Madar                                 (szarnyakSzama)
+│   ├── Sas (final) implements Repulo     (2 láb, 2 szárny)
+│   └── Pingvin (final) implements Uszo   (2 láb, 2 szárny; nem repül)
+└── Emlos                                 (fogakSzama)
+    ├── Kutya (final) [implements Futo]   (ugat, harapE())
+    ├── Macska (final) [implements Futo]  (szorSzine)
+    ├── Denever (final) implements Repulo (repülő emlős)
+    └── Balna (final) implements Uszo     (úszó emlős, lábak = 0)
+
+Uszo    (uszik())
+Repulo  (repul())
+Futo    (fut())
+```
 
 #### 1. Az absztrakt ősosztály: `Gerinces`
 
