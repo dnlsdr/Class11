@@ -4,6 +4,24 @@
 
 **Cél:** Az 1. feladatban felépített osztályhierarchia kiterjesztése állapotkezeléssel (készlet és forintkassza), polimorf módon kezelt valutákkal, valamint adatokkal ellátott saját kivételekkel, amelyekből a hívó fél érdemben helyre tudja állítani a tranzakciót.
 
+#### 0. Kiterjesztett osztályhierarchia:
+```
+Currency (absztrakt; private static double hufBalance; final double rate, double inventory; getHufBalance(), getRate(), getInventory(), toString(); protected decreaseInventory(), increaseInventory())
+├── USD  implements BuyableCurrency, SellableCurrency  (MAX_BUY_LIMIT = 1000.0 -> LimitExceededException)
+├── EUR  implements BuyableCurrency, SellableCurrency  (készlet- és forintkassza-kezelés)
+├── CHF  implements BuyableCurrency, SellableCurrency  (boolean enabled = true; isEnabled(), trigger() -> CurrencyDisabledException)
+├── GBP  implements SellableCurrency                   (csak eladás; növeli a készletet, csökkenti a hufBalance-t)
+└── JPY  implements BuyableCurrency                    (csak vétel; csökkenti a készletet, növeli a hufBalance-t)
+
+BuyableCurrency   (double buyCurrency(double hufAmount) throws Exception)
+SellableCurrency  (double sellCurrency(double foreignAmount) throws Exception)
+
+Exception
+├── InsufficientInventoryException  (currencyName, requested, available; getCurrencyName(), getAvailable(), getMissingAmount())
+├── LimitExceededException          (maxLimit, requested; getMaxLimit(), getRequested())
+└── CurrencyDisabledException         (currencyName; getCurrencyName())
+```
+
 #### 1. Saját kivételek tervezése (Állapottal és metódusokkal)
 
 Hozz létre két ellenőrzött kivételosztályt (`extends Exception`), amelyek nemcsak üzenetet, hanem **konkrét üzleti adatokat** is tárolnak, hogy a `catch` blokk tudjon belőlük számolni:
